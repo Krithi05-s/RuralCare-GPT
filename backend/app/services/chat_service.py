@@ -1,186 +1,333 @@
 import os
 from typing import List, Optional
+
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
-from app.services.rag_service import get_rag_service
 from langchain_groq import ChatGroq
+
+from app.services.rag_service import get_rag_service
+
 
 class ChatService:
     def __init__(self):
-        self.model_name = os.getenv("OLLAMA_MODEL", "llama3")
+
+        # Ollama settings
+        self.ollama_model = os.getenv("OLLAMA_MODEL", "llama3")
         self.base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+
+        # Groq settings
+        self.groq_model = os.getenv(
+            "GROQ_MODEL",
+            "llama-3.3-70b-versatile"
+        )
+
         self.system_prompt = (
             "You are an AI Multimodal Rural Healthcare Assistant. "
-            "Your goal is to provide preliminary health guidance, first-aid recommendations, and precautions. "
-            "Guidelines: 1. Always include a medical disclaimer. 2. Do NOT provide official medical diagnoses. "
-            "3. Suggest visiting a hospital if symptoms seem severe. 4. Use the provided context from the "
-            "medical knowledge base when available. 5. Be empathetic and clear, especially for rural users. "
-            "6. If the user mentions chest pain, breathing difficulty, or severe swelling, treat it as an emergency."
+            "Your goal is to provide preliminary health guidance, "
+            "first-aid recommendations, and precautions. "
+            "Guidelines: "
+            "1. Always include a medical disclaimer. "
+            "2. Do NOT provide official medical diagnoses. "
+            "3. Suggest visiting a hospital if symptoms seem severe. "
+            "4. Use the provided context from the medical knowledge base when available. "
+            "5. Be empathetic and clear, especially for rural users. "
+            "6. If the user mentions chest pain, breathing difficulty, "
+            "or severe swelling, treat it as an emergency."
         )
-        
-        # Pre-initialize chat model (Ollama or Groq fallback)
+
         groq_key = os.getenv("GROQ_API_KEY")
+
+        # -------------------------------
+        # Initialize Chat Model
+        # -------------------------------
         if groq_key:
             try:
-                groq_model = os.getenv("GROQ_MODEL", "llama3-8b-8192")
                 self.chat = ChatGroq(
                     groq_api_key=groq_key,
-                    model_name=groq_model,
+                    model_name=self.groq_model,
                     temperature=0.4
                 )
-                print(f"Initialized ChatGroq with model {groq_model}")
+
+                print(f"[INFO] Using Groq Model: {self.groq_model}")
+
             except Exception as e:
-                print(f"Failed to initialize ChatGroq: {e}. Falling back to ChatOllama.")
+                print(f"[ERROR] Failed to initialize Groq: {e}")
+                print("[INFO] Falling back to Ollama...")
+
                 self.chat = ChatOllama(
                     base_url=self.base_url,
-                    model=self.model_name,
+                    model=self.ollama_model,
                     temperature=0.4
                 )
+
         else:
+            print("[INFO] GROQ_API_KEY not found. Using Ollama.")
+
             self.chat = ChatOllama(
                 base_url=self.base_url,
-                model=self.model_name,
+                model=self.ollama_model,
                 temperature=0.4
             )
 
+    # -------------------------------------------------
+    # Check vague queries
+    # -------------------------------------------------
     def _is_incomplete_query(self, query: str) -> bool:
-        q = query.lower().strip().replace("?", "").replace(".", "").replace(",", "")
+
+        q = query.lower().strip()
+        q = q.replace("?", "").replace(".", "").replace(",", "")
+
         vague_keywords = [
-            "what precautions to take", "wt precaution to take", "what precaution to take",
-            "precautions to take", "first aid to take", "what is the treatment",
-            "how to cure it", "what is the first aid", "first aid steps", "treatment options",
-            "what to do", "what should i do", "how to treat", "how to cure", "treatment",
-            "first aid", "firstaid", "precaution", "precautions", "give precautions"
+            "what precautions to take",
+            "wt precaution to take",
+            "what precaution to take",
+            "precautions to take",
+            "first aid to take",
+            "what is the treatment",
+            "how to cure it",
+            "what is the first aid",
+            "first aid steps",
+            "treatment options",
+            "what to do",
+            "what should i do",
+            "how to treat",
+            "how to cure",
+            "treatment",
+            "first aid",
+            "firstaid",
+            "precaution",
+            "precautions",
+            "give precautions"
         ]
+
         if q in vague_keywords:
             return True
+
         if len(q.split()) <= 4:
-            if any(k in q for k in ["precaution", "first aid", "firstaid", "treatment", "how to treat", "how to cure"]):
-                common_symptoms = ["fever", "cough", "cold", "headache", "pain", "rash", "bite", "burn", "vomit", "wound", "swelling"]
+            if any(k in q for k in [
+                "precaution",
+                "first aid",
+                "firstaid",
+                "treatment",
+                "how to treat",
+                "how to cure"
+            ]):
+
+                common_symptoms = [
+                    "fever",
+                    "cough",
+                    "cold",
+                    "headache",
+                    "pain",
+                    "rash",
+                    "bite",
+                    "burn",
+                    "vomit",
+                    "wound",
+                    "swelling"
+                ]
+
                 if not any(sym in q for sym in common_symptoms):
                     return True
+
         return False
 
-    async def get_response(self, user_message: str, history: Optional[List[dict]] = None):
+    # -------------------------------------------------
+    # Main Chat Response
+    # -------------------------------------------------
+    async def get_response(
+        self,
+        user_message: str,
+        history: Optional[List[dict]] = None
+    ):
+
         if self._is_incomplete_query(user_message):
-            return "Could you please specify which symptoms, injury, or disease you are referring to? For example, let me know if you are asking about a skin rash, fever, snake bite, or burn, so I can provide the correct precautions or first-aid guidance."
+            return (
+                "Could you please specify which symptoms, injury, "
+                "or disease you are referring to? "
+                "For example: fever, skin rash, snake bite, burn, etc."
+            )
 
         if history is None:
             history = []
-            
+
         try:
-            # Retrieve relevant context from RAG
+            # Retrieve RAG context
             rag_service = get_rag_service()
+
             context = rag_service.query(user_message)
+
             context_text = "\n".join(context)
-            
-            # Build message sequence
+
             messages = [
-                SystemMessage(content=f"{self.system_prompt}\n\nRelevant Context:\n{context_text}"),
+                SystemMessage(
+                    content=f"{self.system_prompt}\n\nRelevant Context:\n{context_text}"
+                )
             ]
-            
-            # Add history safely
+
+            # Add conversation history
             for msg in history[-5:]:
+
                 role = msg.get("role")
                 content = msg.get("content", "")
+
                 if role == "user":
                     messages.append(HumanMessage(content=content))
-                elif role in ["bot", "assistant"]:
+
+                elif role in ["assistant", "bot"]:
                     messages.append(AIMessage(content=content))
-                    
-            # Add current user message
+
+            # Current message
             messages.append(HumanMessage(content=user_message))
-            
-            # Use invoke
+
+            # Generate response
             response = self.chat.invoke(messages)
+
             return response.content
-            
+
         except Exception as e:
-            print(f"Chat API error (Ollama): {str(e)}")
+
+            print(f"[ERROR] Chat Response Error: {e}")
+
             return self._mock_response(user_message)
 
-    async def get_streaming_response(self, user_message: str, history: Optional[List[dict]] = None):
+    # -------------------------------------------------
+    # Streaming Response
+    # -------------------------------------------------
+    async def get_streaming_response(
+        self,
+        user_message: str,
+        history: Optional[List[dict]] = None
+    ):
+
         if self._is_incomplete_query(user_message):
-            yield "Could you please specify which symptoms, injury, or disease you are referring to? For example, let me know if you are asking about a skin rash, fever, snake bite, or burn, so I can provide the correct precautions or first-aid guidance."
+            yield (
+                "Could you please specify which symptoms, injury, "
+                "or disease you are referring to?"
+            )
             return
 
         if history is None:
             history = []
-            
+
         try:
             rag_service = get_rag_service()
+
             context = rag_service.query(user_message)
+
             context_text = "\n".join(context)
-            
+
             messages = [
-                SystemMessage(content=f"{self.system_prompt}\n\nRelevant Context:\n{context_text}"),
+                SystemMessage(
+                    content=f"{self.system_prompt}\n\nRelevant Context:\n{context_text}"
+                )
             ]
-            
+
             for msg in history[-5:]:
+
                 role = msg.get("role")
                 content = msg.get("content", "")
+
                 if role == "user":
                     messages.append(HumanMessage(content=content))
-                elif role in ["bot", "assistant"]:
+
+                elif role in ["assistant", "bot"]:
                     messages.append(AIMessage(content=content))
-                    
+
             messages.append(HumanMessage(content=user_message))
-            
-            # Stream tokens
+
             async for chunk in self.chat.astream(messages):
                 yield chunk.content
-                
+
         except Exception as e:
-            print(f"Streaming Chat error: {str(e)}")
-            yield f"Error: {str(e)}"
 
+            print(f"[ERROR] Streaming Error: {e}")
+
+            yield "An error occurred while generating the response."
+
+    # -------------------------------------------------
+    # Mock/Fallback Response
+    # -------------------------------------------------
     def _mock_response(self, user_message: str) -> str:
-        # Fallback response if Ollama is not available
+
         msg_lower = user_message.lower()
-        
+
         if "snake" in msg_lower:
-            return "MEDICAL DISCLAIMER: I am an AI, not a doctor.\n\nFor snake bites: Keep the person calm and still. Immobilize the bitten limb and keep it below heart level. Seek immediate medical attention. Do NOT try to suck the venom out."
-        
-        if any(kw in msg_lower for kw in ["chest pain", "breathing", "heart"]):
-            return "EMERGENCY WARNING: These symptoms can be very serious. Please seek immediate medical help at a hospital emergency department. Do not delay."
-        
+            return (
+                "MEDICAL DISCLAIMER: I am not a doctor.\n\n"
+                "For snake bites: Keep the person calm and still. "
+                "Immobilize the bitten limb and seek immediate medical attention."
+            )
+
+        if any(kw in msg_lower for kw in [
+            "chest pain",
+            "breathing",
+            "heart"
+        ]):
+            return (
+                "EMERGENCY WARNING: These symptoms may be serious. "
+                "Please visit the nearest hospital immediately."
+            )
+
         return (
-            "I understand you're asking about health issues. However, I am currently unable to connect to the "
-            "local AI engine (Ollama). Please ensure Ollama is running (e.g., `ollama run llama3`). "
-            "(Disclaimer: This is a preliminary AI assistant response)."
+            "The AI healthcare assistant is temporarily unavailable. "
+            "Please check whether Ollama or Groq API is properly configured."
         )
 
-    async def generate_symptom_assessment(self, symptoms: List[str]) -> dict:
+    # -------------------------------------------------
+    # Symptom Assessment
+    # -------------------------------------------------
+    async def generate_symptom_assessment(
+        self,
+        symptoms: List[str]
+    ) -> dict:
+
         import json
+
         prompt = (
-            f"You are a medical AI diagnostic engine. A user has reported the following symptoms: {', '.join(symptoms)}.\n"
-            "Based on your medical knowledge, predict the most likely condition. "
-            "You MUST respond ONLY with a valid JSON object. Do not include markdown formatting like ```json. "
-            "The JSON must have these exact keys:\n"
-            "- \"condition\" (string)\n"
-            "- \"risk_level\" (string: 'Low', 'Moderate', 'High', or 'Critical')\n"
-            "- \"confidence\" (number between 0 and 100)\n"
+            f"Symptoms: {', '.join(symptoms)}.\n"
+            "Predict the most likely condition.\n"
+            "Return ONLY valid JSON with keys:\n"
+            "condition, risk_level, confidence"
         )
+
         try:
-            response = self.chat.invoke([SystemMessage(content=prompt)])
+
+            response = self.chat.invoke([
+                SystemMessage(content=prompt)
+            ])
+
             text = response.content.strip()
-            
-            # Clean up markdown formatting if the model still includes it
+
             if text.startswith("```json"):
-                text = text.replace("```json", "", 1).strip()
+                text = text.replace("```json", "").strip()
+
             if text.endswith("```"):
                 text = text[:-3].strip()
-                
+
             data = json.loads(text)
-            
-            # Ensure required keys exist
+
             return {
-                "condition": str(data.get("condition", "Unknown Condition (Generative)")),
-                "risk_level": str(data.get("risk_level", "Moderate")),
-                "confidence": float(data.get("confidence", 70.0))
+                "condition": str(
+                    data.get("condition", "Unknown Condition")
+                ),
+                "risk_level": str(
+                    data.get("risk_level", "Moderate")
+                ),
+                "confidence": float(
+                    data.get("confidence", 70.0)
+                )
             }
+
         except Exception as e:
-            print(f"Error generating assessment: {e}")
-            return None
+
+            print(f"[ERROR] Assessment Error: {e}")
+
+            return {
+                "condition": "Unknown",
+                "risk_level": "Moderate",
+                "confidence": 50.0
+            }
+
 
 chat_service = ChatService()
