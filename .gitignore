@@ -1,11 +1,19 @@
-# Backend
-backend/venv
-backend/__pycache__
+# Environment files
+.env
 backend/.env
+
+# Python
+venv/
+backend/venv/
+__pycache__/
+*.pyc
 
 # Frontend
 frontend/node_modules
 frontend/dist
+
+# VS Code
+.vscode/
 
 # Misc
 .DS_Store
