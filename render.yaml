@@ -1,0 +1,35 @@
+version: 0.2
+
+services:
+  - type: web
+    name: ruralcare-backend
+    env: python
+    plan: starter
+    branch: main
+    root: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:$PORT --timeout 120
+    autoDeploy: true
+    envVars:
+      - key: OLLAMA_BASE_URL
+        value: "http://your-ollama-host:11434"
+      - key: OLLAMA_MODEL
+        value: "llama3"
+      - key: DATABASE_URL
+        value: "sqlite:///./healthcare.db"
+      - key: VITE_API_URL
+        value: "https://ruralcare-backend.onrender.com/api"
+
+staticSites:
+  - type: static
+    name: ruralcare-frontend
+    env: node
+    plan: free
+    branch: main
+    root: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: "https://ruralcare-backend.onrender.com/api"

@@ -1,0 +1,31 @@
+Symptom1,Symptom2,Symptom3,Disease,Risk_Level
+high_fever,body_ache,chills,Dengue,High
+thirst,frequent_urination,weight_loss,Diabetes,High
+runny_nose,sneezing,cough,Flu,Moderate
+chest_tightness,wheezing,shortness_of_breath,Asthma,High
+burning_urination,frequent_urination,pelvic_pain,Urinary Tract Infection,Moderate
+back_pain,numbness,leg_weakness,Sciatica,Moderate
+fatigue,weight_gain,cold_intolerance,Hypothyroidism,Moderate
+weight_loss,rapid_heartbeat,sweating,Hyperthyroidism,Moderate
+eye_redness,itching,tearing,Conjunctivitis,Low
+ear_pain,fever,hearing_loss,Ear Infection,Moderate
+persistent_cough,night_sweats,weight_loss,Tuberculosis,High
+fever,loss_of_taste,dry_cough,COVID-19,High
+abdominal_bloating,constipation,cramps,IBS,Moderate
+memory_loss,confusion,difficulty_speaking,Alzheimer's Disease,High
+sadness,fatigue,loss_of_interest,Depression,Moderate
+anxiety,rapid_heartbeat,sweating,Anxiety Disorder,Moderate
+yellow_skin,dark_urine,fatigue,Hepatitis,High
+leg_swelling,chest_pain,shortness_of_breath,Blood Clot,High
+frequent_headache,dizziness,nosebleeds,Hypertension,High
+fatigue,bruising,frequent_infections,Leukemia,High
+tremor,slow_movement,muscle_stiffness,Parkinson's Disease,Moderate
+fever,stiff_neck,sensitivity_to_light,Meningitis,High
+pelvic_pain,missed_period,nausea,Pregnancy,Low
+itching,weight_loss,jaundice,Liver Disease,High
+snoring,daytime_sleepiness,morning_headache,Sleep Apnea,Moderate
+muscle_pain,fatigue,sleep_disturbance,Fibromyalgia,Moderate
+rash,joint_pain,fever,Lupus,High
+vomiting,dehydration,diarrhea,Gastroenteritis,Moderate
+dry_skin,thirst,fatigue,Dehydration,Moderate
+swollen_legs,fatigue,rapid_heartbeat,Heart Failure,High

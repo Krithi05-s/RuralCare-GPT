@@ -1,0 +1,180 @@
+Symptom1,Symptom2,Symptom3,Disease,Risk_Level
+high_fever,body_ache,chills,Dengue,High
+thirst,frequent_urination,weight_loss,Diabetes,High
+runny_nose,sneezing,cough,Flu,Moderate
+chest_tightness,wheezing,shortness_of_breath,Asthma,High
+burning_urination,frequent_urination,pelvic_pain,Urinary Tract Infection,Moderate
+back_pain,numbness,leg_weakness,Sciatica,Moderate
+fatigue,weight_gain,cold_intolerance,Hypothyroidism,Moderate
+weight_loss,rapid_heartbeat,sweating,Hyperthyroidism,Moderate
+eye_redness,itching,tearing,Conjunctivitis,Low
+ear_pain,fever,hearing_loss,Ear Infection,Moderate
+persistent_cough,night_sweats,weight_loss,Tuberculosis,High
+fever,loss_of_taste,dry_cough,COVID-19,High
+abdominal_bloating,constipation,cramps,IBS,Moderate
+memory_loss,confusion,difficulty_speaking,Alzheimer's Disease,High
+sadness,fatigue,loss_of_interest,Depression,Moderate
+anxiety,rapid_heartbeat,sweating,Anxiety Disorder,Moderate
+yellow_skin,dark_urine,fatigue,Hepatitis,High
+leg_swelling,chest_pain,shortness_of_breath,Blood Clot,High
+frequent_headache,dizziness,nosebleeds,Hypertension,High
+fatigue,bruising,frequent_infections,Leukemia,High
+tremor,slow_movement,muscle_stiffness,Parkinson's Disease,Moderate
+fever,stiff_neck,sensitivity_to_light,Meningitis,High
+pelvic_pain,missed_period,nausea,Pregnancy,Low
+itching,weight_loss,jaundice,Liver Disease,High
+snoring,daytime_sleepiness,morning_headache,Sleep Apnea,Moderate
+muscle_pain,fatigue,sleep_disturbance,Fibromyalgia,Moderate
+rash,joint_pain,fever,Lupus,High
+vomiting,dehydration,diarrhea,Gastroenteritis,Moderate
+dry_skin,thirst,fatigue,Dehydration,Moderate
+swollen_legs,fatigue,rapid_heartbeat,Heart Failure,High
+high_fever,body_ache,chills,Dengue,High
+thirst,frequent_urination,weight_loss,Diabetes,High
+runny_nose,sneezing,cough,Flu,Moderate
+chest_tightness,wheezing,shortness_of_breath,Asthma,High
+burning_urination,frequent_urination,pelvic_pain,Urinary Tract Infection,Moderate
+back_pain,numbness,leg_weakness,Sciatica,Moderate
+headache,nausea,sensitivity_to_light,Migraine,Moderate
+sore_throat,fever,dry_cough,COVID-19,High
+joint_pain,skin_rash,fever,Chikungunya,High
+fatigue,pale_skin,dizziness,Anemia,Moderate
+abdominal_pain,diarrhea,vomiting,Food Poisoning,Moderate
+itching,skin_redness,swelling,Allergy,Low
+chest_pain,left_arm_pain,sweating,Heart Attack,Critical
+blurred_vision,eye_pain,headache,Glaucoma,High
+memory_loss,confusion,difficulty_speaking,Alzheimer's Disease,High
+tremors,slow_movement,muscle_stiffness,Parkinson's Disease,High
+persistent_cough,weight_loss,night_sweats,Tuberculosis,High
+yellow_skin,dark_urine,abdominal_pain,Hepatitis,High
+fever,stomach_pain,constipation,Typhoid,High
+shortness_of_breath,chest_pain,fatigue,Pneumonia,High
+itchy_eyes,sneezing,runny_nose,Allergic Rhinitis,Low
+ear_pain,hearing_loss,fever,Ear Infection,Moderate
+swollen_gums,tooth_pain,bad_breath,Gingivitis,Low
+itching,white_patches,skin_flaking,Fungal Infection,Low
+weight_gain,fatigue,cold_intolerance,Hypothyroidism,Moderate
+weight_loss,rapid_heartbeat,sweating,Hyperthyroidism,High
+stomach_burning,acid_reflux,bloating,Gastritis,Moderate
+abdominal_cramps,bloating,diarrhea,Irritable Bowel Syndrome,Moderate
+fever,cough,loss_of_taste,COVID-19,High
+high_fever,red_spots,joint_pain,Measles,High
+facial_pain,nasal_congestion,headache,Sinusitis,Moderate
+fatigue,swollen_lymph_nodes,fever,Mononucleosis,Moderate
+frequent_headache,blurred_vision,dizziness,Hypertension,High
+chest_discomfort,rapid_heartbeat,shortness_of_breath,Arrhythmia,High
+leg_swelling,fatigue,shortness_of_breath,Heart Failure,Critical
+dry_skin,frequent_infections,high_blood_sugar,Diabetes,High
+bloody_stool,abdominal_pain,weight_loss,Colon Cancer,Critical
+persistent_cough,chest_pain,blood_in_sputum,Lung Cancer,Critical
+lump_in_breast,breast_pain,nipple_discharge,Breast Cancer,Critical
+difficulty_swallowing,weight_loss,heartburn,Esophageal Cancer,Critical
+fatigue,bruising,frequent_infections,Leukemia,Critical
+bone_pain,fatigue,frequent_fractures,Osteoporosis,Moderate
+joint_stiffness,swollen_joints,pain,Rheumatoid Arthritis,High
+skin_redness,scaly_patches,itching,Psoriasis,Moderate
+fever,neck_stiffness,confusion,Meningitis,Critical
+abdominal_pain,loss_of_appetite,nausea,Appendicitis,High
+eye_redness,itching,watering_eyes,Conjunctivitis,Low
+fever,rash,red_eyes,Chickenpox,Moderate
+night_sweats,weight_loss,fever,HIV/AIDS,Critical
+frequent_bruising,fatigue,pale_skin,Blood Disorder,High
+vomiting,diarrhea,dehydration,Gastroenteritis,Moderate
+muscle_pain,fever,fatigue,Malaria,High
+abdominal_pain,jaundice,loss_of_appetite,Liver Disease,High
+difficulty_breathing,swollen_face,hives,Anaphylaxis,Critical
+persistent_sadness,fatigue,loss_of_interest,Depression,High
+excessive_worry,rapid_heartbeat,sweating,Anxiety Disorder,Moderate
+mood_swings,high_energy,impulsiveness,Bipolar Disorder,High
+hallucinations,delusions,social_withdrawal,Schizophrenia,Critical
+snoring,daytime_sleepiness,morning_headache,Sleep Apnea,High
+pelvic_pain,irregular_periods,acne,PCOS,Moderate
+burning_stomach_pain,nausea,bloating,Peptic Ulcer,Moderate
+leg_pain,swelling,redness,Deep Vein Thrombosis,Critical
+dry_cough,weight_loss,chest_pain,Lung Disease,High
+fever,muscle_stiffness,difficulty_swallowing,Tetanus,Critical
+jaw_pain,facial_swelling,tooth_sensitivity,Dental Abscess,Moderate
+rash,itching,fever,Scarlet Fever,Moderate
+muscle_weakness,drooping_eyelids,double_vision,Myasthenia Gravis,High
+abdominal_swelling,fatigue,loss_of_appetite,Cirrhosis,High
+difficulty_urinating,lower_back_pain,blood_in_urine,Kidney Stones,High
+swollen_feet,foamy_urine,fatigue,Kidney Disease,High
+dry_mouth,eye_dryness,joint_pain,Sjogren Syndrome,Moderate
+cold_hands,joint_pain,skin_tightening,Scleroderma,High
+butterfly_rash,joint_pain,fatigue,Lupus,High
+muscle_cramps,fatigue,irregular_heartbeat,Electrolyte Imbalance,High
+diarrhea,bloating,weight_loss,Celiac Disease,Moderate
+severe_headache,slurred_speech,weakness,Stroke,Critical
+itchy_skin,jaundice,fatigue,Gallbladder Disease,Moderate
+high_fever,stiff_neck,sensitivity_to_light,Encephalitis,Critical
+skin_blisters,painful_rash,itching,Shingles,Moderate
+abdominal_pain,fever,bloody_diarrhea,Dysentery,High
+rapid_breathing,confusion,fever,Sepsis,Critical
+fever,swollen_glands,sore_throat,Tonsillitis,Moderate
+painful_joints,fever,skin_rash,Lyme Disease,High
+weight_loss,abdominal_pain,loss_of_appetite,Pancreatic Cancer,Critical
+persistent_thirst,fatigue,blurred_vision,Hyperglycemia,High
+low_blood_sugar,sweating,dizziness,Hypoglycemia,High
+nausea,missed_period,fatigue,Pregnancy,Low
+pelvic_pain,heavy_bleeding,fatigue,Endometriosis,Moderate
+difficulty_concentrating,hyperactivity,impulsiveness,ADHD,Moderate
+fever,cough,chest_congestion,Bronchitis,Moderate
+swollen_ankles,high_blood_pressure,fatigue,Chronic Kidney Disease,High
+eye_pain,blurred_vision,redness,Uveitis,Moderate
+difficulty_swallowing,sore_throat,hoarseness,Laryngitis,Low
+cramps,bloating,mood_swings,Premenstrual Syndrome,Low
+painful_bowel_movements,rectal_bleeding,itching,Hemorrhoids,Low
+bone_pain,night_sweats,weight_loss,Bone Cancer,Critical
+no_pulse,no_breathing,unconsciousness,Cardiac Arrest,Critical
+chest_pain,no_pulse,collapse,Heart Attack,Critical
+difficulty_breathing,blue_lips,unconsciousness,Respiratory Failure,Critical
+sudden_collapse,confusion,slurred_speech,Stroke,Critical
+severe_bleeding,pale_skin,low_blood_pressure,Hemorrhagic Shock,Critical
+rapid_heartbeat,low_blood_pressure,confusion,Septic Shock,Critical
+wheezing,swollen_throat,difficulty_breathing,Anaphylactic Shock,Critical
+loss_of_consciousness,no_breathing,bluish_skin,Drug Overdose,Critical
+high_fever,confusion,seizures,Brain Infection,Critical
+severe_headache,vision_loss,paralysis,Brain Hemorrhage,Critical
+uncontrolled_bleeding,dizziness,fainting,Traumatic Injury,Critical
+no_urine_output,swelling,shortness_of_breath,Acute Kidney Failure,Critical
+severe_chest_pain,sweating,nausea,Myocardial Infarction,Critical
+confusion,rapid_breathing,fruity_breath,Diabetic Ketoacidosis,Critical
+shaking,seizures,loss_of_consciousness,Epileptic Seizure,High
+stiff_neck,high_fever,confusion,Meningitis,Critical
+extreme_thirst,dry_mouth,confusion,Severe Dehydration,High
+low_oxygen,rapid_breathing,chest_tightness,Acute Respiratory Distress Syndrome,Critical
+blue_skin,no_breathing,weak_pulse,Asphyxia,Critical
+unresponsiveness,slow_breathing,pinpoint_pupils,Opioid Overdose,Critical
+severe_abdominal_pain,rigid_abdomen,vomiting,Peritonitis,Critical
+high_fever,low_blood_pressure,rapid_heartbeat,Sepsis,Critical
+fainting,chest_pain,irregular_heartbeat,Cardiac Arrhythmia,Critical
+weakness,facial_drooping,speech_difficulty,Ischemic Stroke,Critical
+shortness_of_breath,chest_pain,coughing_blood,Pulmonary Embolism,Critical
+sudden_vision_loss,headache,confusion,Hypertensive Crisis,Critical
+extreme_fatigue,pale_skin,rapid_heartbeat,Severe Anemia,High
+burning_chest_pain,difficulty_swallowing,vomiting_blood,Gastrointestinal Bleeding,Critical
+unconsciousness,cold_skin,weak_pulse,Hypovolemic Shock,Critical
+muscle_rigidity,high_temperature,confusion,Heat Stroke,Critical
+shivering,low_body_temperature,slow_breathing,Hypothermia,Critical
+difficulty_breathing,high_fever,chest_pain,Severe Pneumonia,Critical
+persistent_vomiting,confusion,abdominal_pain,Acute Pancreatitis,High
+yellow_skin,confusion,abdominal_swelling,Liver Failure,Critical
+extreme_weakness,low_blood_pressure,fainting,Adrenal Crisis,Critical
+no_breathing,burn_marks,unconsciousness,Electrocution,Critical
+smoke_inhalation,coughing,shortness_of_breath,Carbon Monoxide Poisoning,Critical
+severe_allergic_reaction,swollen_face,hives,Anaphylaxis,Critical
+difficulty_speaking,confusion,paralysis,Brain Tumor,High
+fever,chills,low_blood_pressure,Toxic Shock Syndrome,Critical
+sudden_chest_pain,back_pain,fainting,Aortic Dissection,Critical
+weak_pulse,cold_sweat,chest_pressure,Cardiogenic Shock,Critical
+rapid_breathing,anxiety,chest_tightness,Panic Attack,Moderate
+loss_of_consciousness,head_injury,vomiting,Concussion,High
+jaw_lock,muscle_spasms,difficulty_swallowing,Tetanus,Critical
+fever,severe_cough,low_oxygen,COVID-19 Severe Infection,Critical
+difficulty_breathing,fluid_in_lungs,fatigue,Congestive Heart Failure,Critical
+abdominal_pain,bloody_vomit,dizziness,Internal Bleeding,Critical
+high_blood_pressure,blurred_vision,nosebleed,Hypertensive Emergency,Critical
+confusion,fever,stiffness,Encephalitis,Critical
+severe_back_pain,loss_of_bladder_control,leg_weakness,Spinal Cord Compression,Critical
+labour_pain,contractions,water_breaking,Childbirth / Labour,Moderate
+blood_vomiting,nausea,abdominal_pain,Gastrointestinal Bleeding,Critical
